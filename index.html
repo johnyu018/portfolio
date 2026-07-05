@@ -291,7 +291,15 @@ h2.section-title{
 .wp-perf{font-family:var(--mono);font-size:12.5px;color:var(--green);}
 .wp-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
 .wp-grid h5{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
-.wp-grid p{font-size:14px;color:var(--ink);}
+.wp-grid p, .wp-grid ul{font-size:14px;color:var(--ink);}
+.wp-grid ul{padding-left:0;}
+.wp-grid li{padding:2px 0;color:var(--muted);font-size:14px;}
+.wp-meta{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 18px;}
+.wp-meta span{font-family:var(--mono);font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:3px 10px;}
+.plugin-groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px;margin-top:6px;}
+.plugin-group h6{font-family:var(--mono);font-size:11px;color:var(--green);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
+.plugin-group ul{padding-left:0;}
+.plugin-group li{font-size:13.5px;color:var(--muted);padding:2px 0;}
 @media (max-width:600px){.wp-grid{grid-template-columns:1fr;}}
 
 /* ============ DOWNLOADS ============ */
@@ -425,11 +433,11 @@ footer{padding:32px 0;text-align:center;font-family:var(--mono);font-size:12.5px
     <h2 class="section-title reveal">About Me</h2>
     <div class="about-grid">
       <div class="about-copy reveal">
-        <p><!-- Your story --> I got into SEO the way most technical SEOs do: by breaking a website first. Fixing what I broke taught me more about how search engines actually read a page than any course did — and I've been chasing that same curiosity ever since.</p>
+        <p><!-- Your story --> I got into SEO the way most technical SEOs do: by breaking a website first. Fixing what I broke taught me more about how search engines actually read a page than any course did and I've been chasing that same curiosity ever since.</p>
         <h3>Why SEO</h3>
         <p><!-- Why SEO --> Search is the last honest marketing channel: no algorithm favors are for sale, only sites that genuinely serve the query win. I like the puzzle of proving that to a crawler, an AI answer engine, and a real visitor at the same time.</p>
         <h3>Mission</h3>
-        <p><!-- Mission --> To make technical SEO understandable — for clients, for teams, and increasingly, for the AI systems that now summarize the web before anyone clicks a link.</p>
+        <p><!-- Mission --> To make technical SEO understandable for clients, for teams, and increasingly, for the AI systems that now summarize the web before anyone clicks a link.</p>
       </div>
       <div class="stat-rail reveal">
         <div class="stat-cell"><div class="stat-num"><!-- yrs -->X+</div><div class="stat-label">Years in SEO &amp; web dev</div></div>
@@ -492,7 +500,7 @@ footer{padding:32px 0;text-align:center;font-family:var(--mono);font-size:12.5px
   <div class="wrap">
     <div class="eyebrow">johnyu.dev/case-studies</div>
     <h2 class="section-title reveal">SEO Case Studies</h2>
-    <p class="section-lede reveal">Real diagnostics, real fixes, honest results — including demonstration projects, clearly labeled as such.</p>
+    <p class="section-lede reveal">Real diagnostics, real fixes, honest results  including demonstration projects, clearly labeled as such.</p>
 
     <article class="case-card reveal">
       <div class="case-head">
@@ -592,7 +600,7 @@ footer{padding:32px 0;text-align:center;font-family:var(--mono);font-size:12.5px
   <div class="wrap">
     <div class="eyebrow">johnyu.dev/technical-seo</div>
     <h2 class="section-title reveal">Technical SEO Showcase</h2>
-    <p class="section-lede reveal">The unglamorous fundamentals that recruiters actually check for.</p>
+    <p class="section-lede reveal">The unglamorous fundamentals that actually check for.</p>
     <div class="chip-grid reveal">
       <span class="chip"><span class="tick">✓</span>robots.txt</span>
       <span class="chip"><span class="tick">✓</span>sitemap.xml</span>
@@ -616,12 +624,73 @@ footer{padding:32px 0;text-align:center;font-family:var(--mono);font-size:12.5px
     <div class="eyebrow">johnyu.dev/wordpress-projects</div>
     <h2 class="section-title reveal">WordPress Projects</h2>
     <div class="wp-card reveal">
-      <div class="wp-top"><div class="wp-name"><!-- Project Name --></div><div class="wp-perf"><!-- e.g. LCP 1.2s · 98 PSI --></div></div>
+      <div class="wp-top"><div class="wp-name">WordPress Technical SEO &amp; Performance Optimization <span style="color:var(--muted);font-weight:500;">(NDA)</span></div><div class="wp-perf">Real Estate</div></div>
+      <div class="wp-meta">
+        <span>Industry: Real Estate</span>
+        <span>Role: Technical SEO Specialist &amp; WordPress Developer</span>
+      </div>
       <div class="wp-grid">
-        <div><h5>Problem</h5><p><!-- --></p></div>
-        <div><h5>Solution</h5><p><!-- --></p></div>
-        <div><h5>Plugins</h5><p><!-- e.g. Rank Math, WP Rocket --></p></div>
-        <div><h5>Performance</h5><p><!-- before/after --></p></div>
+        <div>
+          <h5>Problem</h5>
+          <ul>
+            <li>Slow page loading times</li>
+            <li>Google Maps integration issues on property pages</li>
+            <li>Large, unoptimized images</li>
+            <li>Excessive plugin usage affecting performance</li>
+            <li>Minor layout inconsistencies after updates</li>
+            <li>Opportunities to improve technical SEO and crawlability</li>
+            <li>Inconsistent metadata across property listings</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Solution</h5>
+          <ul>
+            <li>Troubleshot and resolved Google Maps integration issues</li>
+            <li>Optimized WordPress configuration and plugin settings</li>
+            <li>Improved image optimization and loading behavior</li>
+            <li>Reviewed metadata and on-page SEO elements</li>
+            <li>Enhanced internal linking between property and category pages</li>
+            <li>Verified sitemap generation and indexing status</li>
+            <li>Improved mobile responsiveness</li>
+            <li>Conducted technical SEO audits using industry-standard tools</li>
+            <li>Performed ongoing website maintenance and updates</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:24px;">
+        <h5 style="font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;">WordPress Plugins &amp; Tools</h5>
+        <div class="plugin-groups">
+          <div class="plugin-group"><h6>SEO</h6><ul><li>Yoast SEO</li><li>Google Site Kit</li></ul></div>
+          <div class="plugin-group"><h6>Performance</h6><ul><li>LiteSpeed Cache / WP Rocket</li><li>Smush / ShortPixel / Imagify</li><li>Asset CleanUp</li></ul></div>
+          <div class="plugin-group"><h6>Development</h6><ul><li>Advanced Custom Fields</li><li>Elementor</li><li>Contact Form 7</li><li>WP Mail SMTP</li></ul></div>
+          <div class="plugin-group"><h6>Analytics &amp; SEO Tools</h6><ul><li>Google Search Console</li><li>Google Analytics 4</li><li>Semrush</li><li>Screaming Frog</li><li>Google Lighthouse</li><li>PageSpeed Insights</li></ul></div>
+        </div>
+      </div>
+
+      <div class="wp-grid" style="margin-top:24px;">
+        <div>
+          <h5>Performance Improvements</h5>
+          <ul>
+            <li>Image optimization</li>
+            <li>JavaScript and CSS optimization</li>
+            <li>Plugin performance review</li>
+            <li>Mobile usability improvements</li>
+            <li>Core Web Vitals recommendations</li>
+            <li>Crawlability enhancements</li>
+            <li>Internal linking optimization</li>
+            <li>Structured data validation</li>
+            <li>Ongoing WordPress maintenance</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Technical Skills Demonstrated</h5>
+          <div class="skill-chips">
+            <span>Technical SEO</span><span>WordPress Development</span><span>Website Troubleshooting</span>
+            <span>Performance Optimization</span><span>Core Web Vitals</span><span>Schema Markup</span>
+            <span>Internal Linking</span><span>Google Search Console</span><span>Google Analytics 4</span>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Duplicate .wp-card per project -->
