@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Yu — SEO Specialist &amp; Technical SEO Consultant</title>
+<meta name="description" content="John Yu is an SEO Specialist based in Lapu-Lapu City, Cebu, Philippines, focused on technical SEO, local SEO, WordPress SEO, and AI search optimization (GEO, AEO, AIO).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ======================================================
+   DESIGN TOKENS
+   Palette:
+     --ink        #12151B  near-black navy, primary text / dark surfaces
+     --paper      #F5F6F8  cool light gray (not cream), primary background
+     --paper-dim  #ECEEF2  secondary panel background
+     --line       #DADFE6  hairline borders
+     --blue       #2451FF  "link" blue — title links, primary actions
+     --green      #12805C  "verified/ranked" deep teal-green — urls, success
+     --amber      #E8A33D  metric/rank-change highlight, sparing use
+     --muted      #5B6472  secondary text
+   Type:
+     Display/UI/data → 'IBM Plex Mono' (evokes URL bars, terminals, code)
+     Body            → 'Inter' (clean reading face)
+   ====================================================== */
+
+:root{
+  --ink:#12151B;
+  --paper:#F5F6F8;
+  --paper-dim:#ECEEF2;
+  --line:#DADFE6;
+  --blue:#2451FF;
+  --green:#12805C;
+  --amber:#E8A33D;
+  --muted:#5B6472;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --maxw:1120px;
+  --radius:6px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12.5px;
+  color:var(--green);
+  letter-spacing:.02em;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:14px;
+}
+.eyebrow::before{content:"›";color:var(--muted);}
+h2.section-title{
+  font-family:var(--sans);
+  font-weight:800;
+  font-size:clamp(28px,4vw,38px);
+  letter-spacing:-0.01em;
+  margin-bottom:10px;
+}
+.section-lede{
+  color:var(--muted);
+  max-width:640px;
+  margin-bottom:44px;
+  font-size:16px;
+}
+.section{padding:96px 0;border-bottom:1px solid var(--line);}
+.section.alt{background:var(--paper-dim);}
+
+/* reveal-on-scroll */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.is-visible{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none;}
+  html{scroll-behavior:auto;}
+}
+
+/* ============ NAV — browser chrome / address bar ============ */
+.browser-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(245,246,248,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.chrome-row{
+  display:flex;align-items:center;gap:16px;
+  padding:12px 24px;max-width:var(--maxw);margin:0 auto;
+}
+.dots{display:flex;gap:6px;flex-shrink:0;}
+.dots span{width:9px;height:9px;border-radius:50%;display:block;}
+.dots span:nth-child(1){background:#E8817A;}
+.dots span:nth-child(2){background:#E8C36A;}
+.dots span:nth-child(3){background:#7FBF8F;}
+.address-bar{
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--muted);
+  background:var(--paper-dim);
+  border:1px solid var(--line);
+  border-radius:5px;
+  padding:6px 12px;
+  flex:1;
+  max-width:260px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.address-bar .lock{color:var(--green);font-size:11px;}
+.nav-links{
+  display:flex;align-items:center;gap:28px;
+  font-family:var(--mono);font-size:13.5px;
+  margin-left:auto;
+}
+.nav-links a{color:var(--ink);opacity:.75;transition:opacity .15s;}
+.nav-links a:hover{opacity:1;}
+.nav-item{position:relative;}
+.nav-item > button{
+  font-family:var(--mono);font-size:13.5px;color:var(--ink);opacity:.75;
+  background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;
+}
+.nav-item > button:hover{opacity:1;}
+.caret{font-size:10px;transition:transform .15s;}
+.nav-item.open .caret{transform:rotate(180deg);}
+.dropdown{
+  position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
+  background:var(--ink);color:var(--paper);
+  border-radius:8px;padding:8px;min-width:220px;
+  box-shadow:0 16px 32px rgba(18,21,27,.22);
+  display:none;flex-direction:column;
+}
+.nav-item.open .dropdown{display:flex;}
+.dropdown a{
+  padding:10px 12px;border-radius:5px;font-family:var(--mono);font-size:13px;
+  display:flex;justify-content:space-between;gap:10px;color:var(--paper);opacity:.9;
+}
+.dropdown a:hover{background:rgba(255,255,255,.08);opacity:1;}
+.dropdown a span.ext{opacity:.5;font-size:11px;}
+.hamburger{display:none;background:none;border:none;font-size:20px;cursor:pointer;margin-left:auto;}
+
+@media (max-width:860px){
+  .nav-links{
+    position:fixed;inset:56px 0 auto 0;background:var(--paper);
+    flex-direction:column;align-items:flex-start;gap:0;
+    padding:8px 24px 20px;border-bottom:1px solid var(--line);
+    display:none;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links a,.nav-item{width:100%;padding:12px 0;border-bottom:1px solid var(--line);}
+  .nav-item > button{width:100%;justify-content:space-between;padding:0;}
+  .dropdown{position:static;transform:none;background:none;box-shadow:none;padding:0 0 0 12px;display:none;}
+  .nav-item.open .dropdown{display:flex;}
+  .dropdown a{color:var(--ink);}
+  .address-bar{display:none;}
+  .hamburger{display:block;}
+}
+
+/* ============ HERO — the SERP result ============ */
+.hero{padding:72px 0 96px;}
+.serp-card{
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff;
+  padding:36px clamp(20px,4vw,48px);
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:32px;
+  align-items:start;
+}
+.serp-avatar{
+  width:104px;height:104px;border-radius:50%;
+  object-fit:cover;border:1px solid var(--line);
+}
+.serp-url{
+  font-family:var(--mono);font-size:13px;color:var(--green);
+  display:flex;align-items:center;gap:6px;margin-bottom:6px;
+}
+.serp-title{
+  font-family:var(--sans);font-weight:900;
+  font-size:clamp(30px,5vw,46px);
+  color:var(--blue);
+  letter-spacing:-0.015em;
+  line-height:1.05;
+  margin-bottom:10px;
+}
+.serp-title .cursor{
+  display:inline-block;width:3px;height:.85em;background:var(--blue);
+  margin-left:4px;vertical-align:-2px;
+  animation:blink 1.1s step-end infinite;
+}
+@keyframes blink{50%{opacity:0;}}
+.serp-headline{
+  font-family:var(--mono);font-size:14px;color:var(--ink);
+  background:var(--paper-dim);border:1px solid var(--line);
+  border-radius:5px;padding:8px 12px;display:inline-block;
+  margin-bottom:16px;line-height:1.5;
+}
+.serp-desc{color:var(--muted);font-size:16.5px;max-width:56ch;margin-bottom:26px;}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.btn{
+  font-family:var(--mono);font-size:13.5px;font-weight:500;
+  padding:12px 22px;border-radius:6px;border:1px solid var(--ink);
+  cursor:pointer;transition:transform .15s,background .15s,color .15s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary{background:var(--ink);color:var(--paper);}
+.btn-primary:hover{transform:translateY(-2px);background:var(--blue);border-color:var(--blue);}
+.btn-ghost{background:transparent;color:var(--ink);}
+.btn-ghost:hover{transform:translateY(-2px);background:var(--ink);color:var(--paper);}
+@media (max-width:600px){
+  .serp-card{grid-template-columns:1fr;text-align:left;}
+}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;}
+.about-copy p{color:var(--ink);margin-bottom:18px;font-size:16px;max-width:58ch;}
+.about-copy h3{font-family:var(--mono);font-size:13px;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin:26px 0 8px;}
+.stat-rail{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+.stat-cell{background:#fff;padding:24px;}
+.stat-num{font-family:var(--mono);font-weight:700;font-size:30px;color:var(--blue);}
+.stat-label{font-size:13px;color:var(--muted);margin-top:4px;}
+@media (max-width:800px){.about-grid{grid-template-columns:1fr;}}
+
+/* ============ SERVICES ============ */
+.service-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.service-card{background:#fff;padding:26px;transition:background .15s;}
+.service-card:hover{background:var(--paper-dim);}
+.service-index{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:10px;}
+.service-name{font-weight:700;font-size:16.5px;margin-bottom:8px;}
+.service-desc{font-size:14px;color:var(--muted);}
+
+/* ============ PROCESS — command pipeline ============ */
+.pipeline{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;}
+.pipe-step{display:flex;align-items:center;gap:20px;padding:18px 26px;border-bottom:1px solid var(--line);}
+.pipe-step:last-child{border-bottom:none;}
+.pipe-index{font-family:var(--mono);font-size:13px;color:var(--paper);background:var(--ink);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pipe-name{font-weight:600;font-size:16px;}
+.pipe-arrow{font-family:var(--mono);color:var(--line);margin-left:auto;font-size:18px;}
+@media (max-width:600px){.pipe-arrow{display:none;}}
+
+/* ============ CASE STUDIES ============ */
+.case-card{border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:24px;overflow:hidden;}
+.case-head{display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:22px 26px;border-bottom:1px solid var(--line);}
+.case-tag{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:3px 10px;}
+.case-title{font-weight:800;font-size:19px;}
+.case-client{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:4px;}
+.case-body{padding:26px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.skill-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.skill-chips span{font-family:var(--mono);font-size:12px;border:1px solid var(--line);border-radius:14px;padding:4px 11px;color:var(--ink);}
+.case-block h4{font-family:var(--mono);font-size:11.5px;color:var(--green);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+.case-block p, .case-block ul{font-size:14.5px;color:var(--ink);}
+.case-block ul{padding-left:0;}
+.case-block li{padding:2px 0;color:var(--muted);}
+.metric-flow{display:flex;align-items:center;gap:14px;font-family:var(--mono);}
+.metric-box{border:1px solid var(--line);border-radius:6px;padding:12px 16px;text-align:center;flex:1;}
+.metric-box .val{font-size:22px;font-weight:700;}
+.metric-box.before .val{color:var(--muted);}
+.metric-box.after .val{color:var(--green);}
+.metric-box .lbl{font-size:11px;color:var(--muted);margin-top:2px;}
+.metric-arrow{color:var(--amber);font-size:18px;}
+@media (max-width:700px){.case-body{grid-template-columns:1fr;}}
+
+/* ============ CHECKLIST / TOOLS / TAG GRIDS ============ */
+.chip-grid{display:flex;flex-wrap:wrap;gap:10px;}
+.chip{
+  font-family:var(--mono);font-size:13px;
+  border:1px solid var(--line);border-radius:20px;
+  padding:8px 16px;background:#fff;display:inline-flex;align-items:center;gap:8px;
+}
+.chip .tick{color:var(--green);}
+
+/* ============ WP PROJECTS ============ */
+.wp-card{border:1px solid var(--line);border-radius:10px;background:#fff;padding:26px;margin-bottom:20px;}
+.wp-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+.wp-name{font-weight:800;font-size:18px;}
+.wp-perf{font-family:var(--mono);font-size:12.5px;color:var(--green);}
+.wp-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.wp-grid h5{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
+.wp-grid p{font-size:14px;color:var(--ink);}
+@media (max-width:600px){.wp-grid{grid-template-columns:1fr;}}
+
+/* ============ DOWNLOADS ============ */
+.download-row{display:flex;align-items:center;justify-content:space-between;gap:16px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:18px 22px;margin-bottom:12px;flex-wrap:wrap;}
+.download-meta{font-family:var(--mono);font-size:12.5px;color:var(--muted);}
+.download-name{font-weight:700;font-size:15px;margin-bottom:3px;}
+
+/* ============ KEYWORD / CONTENT 2x2 ============ */
+.quad-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.quad-cell{background:#fff;padding:28px;}
+.quad-cell h4{font-family:var(--mono);font-size:12px;color:var(--green);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;}
+.quad-cell p{font-size:14.5px;color:var(--muted);}
+@media (max-width:700px){.quad-grid{grid-template-columns:1fr;}}
+
+/* ============ AI SEO ============ */
+.ai-banner{
+  border:1px solid var(--ink);border-radius:10px;background:var(--ink);color:var(--paper);
+  padding:40px clamp(20px,4vw,48px);
+}
+.ai-banner .eyebrow{color:var(--amber);}
+.ai-banner .eyebrow::before{color:rgba(245,246,248,.4);}
+.ai-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:24px;}
+.ai-list li{
+  font-family:var(--mono);font-size:13.5px;
+  border:1px solid rgba(245,246,248,.18);border-radius:8px;padding:14px 16px;
+  display:flex;align-items:center;gap:10px;
+}
+.ai-list li::before{content:"◆";color:var(--amber);font-size:10px;}
+
+/* ============ CERTS / TESTIMONIALS ============ */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;}
+.cert-card{border:1px dashed var(--line);border-radius:8px;padding:22px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px;}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.testi-card{border:1px solid var(--line);border-radius:10px;background:#fff;padding:26px;}
+.testi-quote{font-size:15.5px;margin-bottom:16px;}
+.testi-quote::before{content:"“";color:var(--blue);}
+.testi-quote::after{content:"”";color:var(--blue);}
+.testi-name{font-family:var(--mono);font-size:12.5px;color:var(--muted);}
+
+/* ============ RESUME ============ */
+.resume-card{
+  border:1px solid var(--line);border-radius:10px;background:#fff;
+  padding:36px clamp(20px,4vw,48px);
+  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+}
+.resume-text .eyebrow{margin-bottom:8px;}
+
+/* ============ CONTACT / FOOTER ============ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+.contact-card{border:1px solid var(--line);border-radius:10px;background:#fff;padding:8px;}
+.contact-row{display:flex;align-items:center;gap:16px;padding:18px;border-bottom:1px solid var(--line);}
+.contact-row:last-child{border-bottom:none;}
+.contact-icon{font-family:var(--mono);font-size:12px;color:var(--green);width:28px;}
+.contact-label{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+.contact-val{font-weight:600;font-size:15px;}
+.social-rail{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+.social-rail a{
+  font-family:var(--mono);font-size:12.5px;border:1px solid var(--line);border-radius:20px;
+  padding:8px 16px;background:#fff;transition:background .15s,color .15s;
+}
+.social-rail a:hover{background:var(--ink);color:var(--paper);}
+.msg-fab{
+  position:fixed;bottom:24px;right:24px;z-index:90;
+  background:var(--blue);color:#fff;border-radius:50%;
+  width:56px;height:56px;display:flex;align-items:center;justify-content:center;
+  font-size:22px;box-shadow:0 10px 24px rgba(36,81,255,.35);
+  transition:transform .15s;
+}
+.msg-fab:hover{transform:scale(1.08);}
+form.contact-form{display:flex;flex-direction:column;gap:12px;}
+form.contact-form input,form.contact-form textarea{
+  font-family:var(--sans);font-size:14.5px;
+  border:1px solid var(--line);border-radius:6px;padding:12px 14px;background:#fff;color:var(--ink);
+}
+form.contact-form textarea{min-height:110px;resize:vertical;}
+footer{padding:32px 0;text-align:center;font-family:var(--mono);font-size:12.5px;color:var(--muted);}
+@media (max-width:800px){.contact-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="browser-nav">
+  <div class="chrome-row">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <div class="address-bar"><span class="lock">🔒</span>johnyu.dev</div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <div class="nav-item" id="portfolioNavItem">
+        <button id="portfolioToggle" aria-expanded="false">Portfolio <span class="caret">▾</span></button>
+        <div class="dropdown">
+          <a href="https://johnyu018.github.io/myportfolio/webdevelopment/" target="_blank" rel="noopener">Web Development <span class="ext">↗</span></a>
+          <a href="https://johnyu018.github.io/myportfolio/seo/" target="_blank" rel="noopener">SEO Projects <span class="ext">↗</span></a>
+          <a href="https://johnyu018.github.io/myportfolio/digitalmarketing/" target="_blank" rel="noopener">Digital Marketing <span class="ext">↗</span></a>
+          <a href="https://johnyu018.github.io/myportfolio/webdesign/" target="_blank" rel="noopener">UI/UX Design <span class="ext">↗</span></a>
+          <a href="https://jdigitals.wordpress.com/" target="_blank" rel="noopener">All Projects <span class="ext">↗</span></a>
+        </div>
+      </div>
+      <a href="#case-studies">Case Studies</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= 1. HOME / HERO ================= -->
+<header id="home" class="hero">
+  <div class="wrap">
+    <div class="serp-card reveal">
+      <img class="serp-avatar" src="images/john-yu-photo.jpg" alt="Photo of John Yu">
+      <div>
+        <div class="serp-url">johnyu.dev <span style="color:var(--muted)">› about</span></div>
+        <h1 class="serp-title">John Yu<span class="cursor"></span></h1>
+        <div class="serp-headline">SEO Specialist | Technical SEO | WordPress Developer | Local SEO | AI Search Optimization (AEO • GEO • AIO)</div>
+        <p class="serp-desc">I help businesses rank, get cited by AI answer engines, and convert — combining technical SEO audits, WordPress development, and next-generation search optimization for Google, ChatGPT, and Perplexity alike.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Get In Touch</a>
+          <a href="#case-studies" class="btn btn-ghost">View Case Studies</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 2. ABOUT ================= -->
+<section id="about" class="section">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/about</div>
+    <h2 class="section-title reveal">About Me</h2>
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <p><!-- Your story --> I got into SEO the way most technical SEOs do: by breaking a website first. Fixing what I broke taught me more about how search engines actually read a page than any course did — and I've been chasing that same curiosity ever since.</p>
+        <h3>Why SEO</h3>
+        <p><!-- Why SEO --> Search is the last honest marketing channel: no algorithm favors are for sale, only sites that genuinely serve the query win. I like the puzzle of proving that to a crawler, an AI answer engine, and a real visitor at the same time.</p>
+        <h3>Mission</h3>
+        <p><!-- Mission --> To make technical SEO understandable — for clients, for teams, and increasingly, for the AI systems that now summarize the web before anyone clicks a link.</p>
+      </div>
+      <div class="stat-rail reveal">
+        <div class="stat-cell"><div class="stat-num"><!-- yrs -->X+</div><div class="stat-label">Years in SEO &amp; web dev</div></div>
+        <div class="stat-cell"><div class="stat-num">GEO/AEO</div><div class="stat-label">AI search specialization</div></div>
+        <div class="stat-cell"><div class="stat-num">WP</div><div class="stat-label">WordPress-native builds</div></div>
+        <div class="stat-cell"><div class="stat-num">PH 🇵🇭</div><div class="stat-label">Based in Cebu, remote-friendly</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. SERVICES ================= -->
+<section id="services" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/services</div>
+    <h2 class="section-title reveal">SEO Services</h2>
+    <p class="section-lede reveal">From full technical audits to AI-answer-engine visibility — the same discipline applied wherever people are searching now.</p>
+    <div class="service-grid reveal">
+      <div class="service-card"><div class="service-index">01</div><div class="service-name">SEO Audit</div><div class="service-desc">Full-site diagnostic covering technical, on-page, and content health.</div></div>
+      <div class="service-card"><div class="service-index">02</div><div class="service-name">Technical SEO</div><div class="service-desc">Crawlability, indexation, and site architecture fixes.</div></div>
+      <div class="service-card"><div class="service-index">03</div><div class="service-name">On-Page SEO</div><div class="service-desc">Titles, headings, internal links, and content-to-intent matching.</div></div>
+      <div class="service-card"><div class="service-index">04</div><div class="service-name">Local SEO</div><div class="service-desc">Google Business Profile, citations, and map-pack visibility.</div></div>
+      <div class="service-card"><div class="service-index">05</div><div class="service-name">WordPress SEO</div><div class="service-desc">Theme, plugin, and page-builder cleanup for real performance.</div></div>
+      <div class="service-card"><div class="service-index">06</div><div class="service-name">Speed Optimization</div><div class="service-desc">Core Web Vitals and load-time fixes that hold under real traffic.</div></div>
+      <div class="service-card"><div class="service-index">07</div><div class="service-name">Schema Markup</div><div class="service-desc">Structured data for rich results and machine-readable context.</div></div>
+      <div class="service-card"><div class="service-index">08</div><div class="service-name">Search Console</div><div class="service-desc">Query, coverage, and indexing diagnostics.</div></div>
+      <div class="service-card"><div class="service-index">09</div><div class="service-name">Google Analytics 4</div><div class="service-desc">Event tracking and conversion reporting setup.</div></div>
+      <div class="service-card"><div class="service-index">10</div><div class="service-name">AI Search Optimization</div><div class="service-desc">Structuring content to be cited by AI answer engines.</div></div>
+      <div class="service-card"><div class="service-index">11</div><div class="service-name">GEO</div><div class="service-desc">Generative Engine Optimization for ChatGPT, Gemini &amp; Claude.</div></div>
+      <div class="service-card"><div class="service-index">12</div><div class="service-name">AEO</div><div class="service-desc">Answer Engine Optimization for featured snippets &amp; voice.</div></div>
+      <div class="service-card"><div class="service-index">13</div><div class="service-name">Content Strategy</div><div class="service-desc">Topic clusters and entity-driven content planning.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. SEO PROCESS ================= -->
+<section id="process" class="section">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/process</div>
+    <h2 class="section-title reveal">SEO Process</h2>
+    <p class="section-lede reveal">Every project runs through the same pipeline — nothing skipped, nothing shipped without reporting back.</p>
+    <div class="pipeline reveal">
+      <div class="pipe-step"><div class="pipe-index">1</div><div class="pipe-name">Discovery</div><div class="pipe-arrow">↓</div></div>
+      <div class="pipe-step"><div class="pipe-index">2</div><div class="pipe-name">SEO Audit</div><div class="pipe-arrow">↓</div></div>
+      <div class="pipe-step"><div class="pipe-index">3</div><div class="pipe-name">Keyword Research</div><div class="pipe-arrow">↓</div></div>
+      <div class="pipe-step"><div class="pipe-index">4</div><div class="pipe-name">Technical SEO</div><div class="pipe-arrow">↓</div></div>
+      <div class="pipe-step"><div class="pipe-index">5</div><div class="pipe-name">On-Page SEO</div><div class="pipe-arrow">↓</div></div>
+      <div class="pipe-step"><div class="pipe-index">6</div><div class="pipe-name">Content</div><div class="pipe-arrow">↓</div></div>
+      <div class="pipe-step"><div class="pipe-index">7</div><div class="pipe-name">Internal Linking</div><div class="pipe-arrow">↓</div></div>
+      <div class="pipe-step"><div class="pipe-index">8</div><div class="pipe-name">Schema</div><div class="pipe-arrow">↓</div></div>
+      <div class="pipe-step"><div class="pipe-index">9</div><div class="pipe-name">Core Web Vitals</div><div class="pipe-arrow">↓</div></div>
+      <div class="pipe-step"><div class="pipe-index">10</div><div class="pipe-name">Off-Page SEO</div><div class="pipe-arrow">↓</div></div>
+      <div class="pipe-step"><div class="pipe-index">11</div><div class="pipe-name">Reporting</div><div class="pipe-arrow">✓</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. CASE STUDIES ================= -->
+<section id="case-studies" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/case-studies</div>
+    <h2 class="section-title reveal">SEO Case Studies</h2>
+    <p class="section-lede reveal">Real diagnostics, real fixes, honest results — including demonstration projects, clearly labeled as such.</p>
+
+    <article class="case-card reveal">
+      <div class="case-head">
+        <div>
+          <div class="case-title">Case Study #1: Technical SEO &amp; Core Web Vitals Optimization</div>
+          <div class="case-client">Australian Marketplace Website (NO BS Marketplace)</div>
+        </div>
+        <div class="case-tag">Client project</div>
+      </div>
+      <div class="case-body">
+        <div class="case-block"><h4>Challenge</h4><p>The website was experiencing technical SEO issues affecting crawlability, indexation, and user experience. Core Web Vitals performance needed improvement, and there were opportunities to strengthen internal linking and structured data implementation.</p></div>
+        <div class="case-block"><h4>Strategy</h4><ul>
+          <li>Conducted a comprehensive technical SEO audit</li>
+          <li>Reviewed Core Web Vitals performance and technical site health</li>
+          <li>Developed a prioritized Technical Action Plan</li>
+          <li>Improved internal linking architecture</li>
+          <li>Implemented structured data including Organization, Service, Product, and Local Business schema</li>
+          <li>Provided metadata and technical SEO recommendations</li>
+        </ul></div>
+        <div class="case-block"><h4>Result</h4><ul>
+          <li>Improved technical SEO foundation and crawl efficiency</li>
+          <li>Enhanced search engine understanding through schema markup</li>
+          <li>Strengthened internal authority flow across important pages</li>
+          <li>Established a scalable framework for long-term SEO growth</li>
+        </ul></div>
+        <div class="case-block"><h4>Key Skills Demonstrated</h4><div class="skill-chips">
+          <span>Technical SEO</span><span>Core Web Vitals</span><span>Schema Markup</span><span>Internal Linking</span><span>SEO Strategy</span>
+        </div></div>
+      </div>
+    </article>
+
+    <article class="case-card reveal">
+      <div class="case-head">
+        <div>
+          <div class="case-title">Case Study #2: Local SEO &amp; On-Page Optimization Campaign</div>
+          <div class="case-client">US-Based Marketing Agency (Ring Ring Marketing)</div>
+        </div>
+        <div class="case-tag">Client project</div>
+      </div>
+      <div class="case-body">
+        <div class="case-block"><h4>Challenge</h4><p>The client needed a comprehensive on-page SEO review to improve local search visibility, content relevance, and overall website health.</p></div>
+        <div class="case-block"><h4>Strategy</h4><ul>
+          <li>Performed a full onsite SEO audit</li>
+          <li>Conducted keyword opportunity analysis using Semrush</li>
+          <li>Implemented E-E-A-T recommendations and FAQ content improvements</li>
+          <li>Added Local Business and Service schema using JSON-LD</li>
+          <li>Configured Google Analytics and phone-click tracking</li>
+          <li>Identified and resolved canonical, duplicate content, and URL issues</li>
+          <li>Recommended page speed and image optimization improvements</li>
+        </ul></div>
+        <div class="case-block"><h4>Result</h4><ul>
+          <li>Improved local SEO relevance and search visibility</li>
+          <li>Enhanced tracking accuracy for lead generation activities</li>
+          <li>Strengthened content structure and search intent alignment</li>
+          <li>Improved technical health and indexation readiness</li>
+        </ul></div>
+        <div class="case-block"><h4>Key Skills Demonstrated</h4><div class="skill-chips">
+          <span>Local SEO</span><span>On-Page SEO</span><span>Keyword Research</span><span>Schema Markup</span><span>Analytics Implementation</span>
+        </div></div>
+      </div>
+    </article>
+
+    <article class="case-card reveal">
+      <div class="case-head">
+        <div>
+          <div class="case-title">Case Study #3: Reputation Management &amp; Executive SEO Strategy</div>
+          <div class="case-client">Dialique Solutions – Built Brands</div>
+        </div>
+        <div class="case-tag">Client project</div>
+      </div>
+      <div class="case-body">
+        <div class="case-block"><h4>Challenge</h4><p>The company wanted to strengthen its online presence while improving search visibility for both the organization and executive leadership team.</p></div>
+        <div class="case-block"><h4>Strategy</h4><ul>
+          <li>Built SEO and reputation management strategies from the ground up</li>
+          <li>Conducted keyword research and content planning</li>
+          <li>Implemented reputation-focused content initiatives</li>
+          <li>Monitored search performance and brand visibility</li>
+          <li>Worked closely with executive leadership and marketing teams</li>
+          <li>Developed reporting systems to measure campaign effectiveness</li>
+        </ul></div>
+        <div class="case-block"><h4>Result</h4><ul>
+          <li>Improved online brand presence and executive visibility</li>
+          <li>Strengthened reputation management efforts in search results</li>
+          <li>Established a repeatable SEO and reputation management process</li>
+          <li>Created a foundation for long-term organic growth and brand authority</li>
+        </ul></div>
+        <div class="case-block"><h4>Key Skills Demonstrated</h4><div class="skill-chips">
+          <span>SEO Strategy</span><span>Reputation Management</span><span>Leadership</span><span>Reporting</span><span>Stakeholder Collaboration</span>
+        </div></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= 6. TECHNICAL SEO SHOWCASE ================= -->
+<section id="technical-seo" class="section">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/technical-seo</div>
+    <h2 class="section-title reveal">Technical SEO Showcase</h2>
+    <p class="section-lede reveal">The unglamorous fundamentals that recruiters actually check for.</p>
+    <div class="chip-grid reveal">
+      <span class="chip"><span class="tick">✓</span>robots.txt</span>
+      <span class="chip"><span class="tick">✓</span>sitemap.xml</span>
+      <span class="chip"><span class="tick">✓</span>canonicals</span>
+      <span class="chip"><span class="tick">✓</span>redirects</span>
+      <span class="chip"><span class="tick">✓</span>indexing</span>
+      <span class="chip"><span class="tick">✓</span>crawl budget</span>
+      <span class="chip"><span class="tick">✓</span>schema</span>
+      <span class="chip"><span class="tick">✓</span>Core Web Vitals</span>
+      <span class="chip"><span class="tick">✓</span>PageSpeed</span>
+      <span class="chip"><span class="tick">✓</span>log analysis</span>
+      <span class="chip"><span class="tick">✓</span>hreflang</span>
+      <span class="chip"><span class="tick">✓</span>JavaScript SEO</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7. WORDPRESS PROJECTS ================= -->
+<section id="wordpress-projects" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/wordpress-projects</div>
+    <h2 class="section-title reveal">WordPress Projects</h2>
+    <div class="wp-card reveal">
+      <div class="wp-top"><div class="wp-name"><!-- Project Name --></div><div class="wp-perf"><!-- e.g. LCP 1.2s · 98 PSI --></div></div>
+      <div class="wp-grid">
+        <div><h5>Problem</h5><p><!-- --></p></div>
+        <div><h5>Solution</h5><p><!-- --></p></div>
+        <div><h5>Plugins</h5><p><!-- e.g. Rank Math, WP Rocket --></p></div>
+        <div><h5>Performance</h5><p><!-- before/after --></p></div>
+      </div>
+    </div>
+    <!-- Duplicate .wp-card per project -->
+  </div>
+</section>
+
+<!-- ================= 8. SEO AUDIT SAMPLES ================= -->
+<section id="audit-samples" class="section">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/audit-samples</div>
+    <h2 class="section-title reveal">SEO Audit Samples</h2>
+    <p class="section-lede reveal">Full 30–40 page audits, formatted the way agencies actually deliver them.</p>
+    <div class="reveal">
+      <div class="download-row">
+        <div><div class="download-name">Full Technical &amp; On-Page Audit — Sample</div><div class="download-meta">PDF · 34 pages</div></div>
+        <a href="downloads/seo-audit-sample-1.pdf" download class="btn btn-ghost">Download</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 9. KEYWORD RESEARCH ================= -->
+<section id="keyword-research" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/keyword-research</div>
+    <h2 class="section-title reveal">Keyword Research Examples</h2>
+    <div class="quad-grid reveal">
+      <div class="quad-cell"><h4>Cluster</h4><p><!-- keyword cluster example --></p></div>
+      <div class="quad-cell"><h4>Search Intent</h4><p><!-- intent mapping example --></p></div>
+      <div class="quad-cell"><h4>Topical Map</h4><p><!-- topical map example --></p></div>
+      <div class="quad-cell"><h4>Competitor Analysis</h4><p><!-- competitor gap example --></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10. CONTENT STRATEGY ================= -->
+<section id="content-strategy" class="section">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/content-strategy</div>
+    <h2 class="section-title reveal">Content Strategy</h2>
+    <div class="quad-grid reveal">
+      <div class="quad-cell"><h4>Topic Clusters</h4><p><!-- --></p></div>
+      <div class="quad-cell"><h4>Entity SEO</h4><p><!-- --></p></div>
+      <div class="quad-cell"><h4>Topical Authority</h4><p><!-- --></p></div>
+      <div class="quad-cell"><h4>AEO</h4><p><!-- --></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11. AI SEO (2026) ================= -->
+<section id="ai-seo" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/ai-seo</div>
+    <h2 class="section-title reveal">AI SEO — 2026</h2>
+    <p class="section-lede reveal">Where search is heading, and where I've already been optimizing.</p>
+    <div class="ai-banner reveal">
+      <div class="eyebrow">why this matters now</div>
+      <p style="max-width:60ch;color:rgba(245,246,248,.85);">Search results are increasingly answers, not links. Being cited inside an AI Overview, a ChatGPT response, or a Perplexity summary is the new ranking #1 — this is the discipline built around earning that citation.</p>
+      <ul class="ai-list">
+        <li>Generative Engine Optimization (GEO)</li>
+        <li>Answer Engine Optimization (AEO)</li>
+        <li>AI Overview Optimization</li>
+        <li>ChatGPT Visibility</li>
+        <li>Perplexity Optimization</li>
+        <li>Bing Copilot SEO</li>
+        <li>Semantic Search</li>
+        <li>Knowledge Graph</li>
+        <li>Entity Optimization</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 12. TOOLS ================= -->
+<section id="tools" class="section">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/tools</div>
+    <h2 class="section-title reveal">Tools</h2>
+    <div class="chip-grid reveal">
+      <span class="chip">Google Search Console</span>
+      <span class="chip">GA4</span>
+      <span class="chip">Looker Studio</span>
+      <span class="chip">Screaming Frog</span>
+      <span class="chip">Ahrefs</span>
+      <span class="chip">Semrush</span>
+      <span class="chip">PageSpeed Insights</span>
+      <span class="chip">GTmetrix</span>
+      <span class="chip">Cloudflare</span>
+      <span class="chip">Yoast SEO</span>
+      <span class="chip">Rank Math</span>
+      <span class="chip">Sitebulb</span>
+      <span class="chip">Chrome DevTools</span>
+      <span class="chip">Google Tag Manager</span>
+      <span class="chip">ChatGPT</span>
+      <span class="chip">Gemini</span>
+      <span class="chip">Claude</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 13. CERTIFICATIONS ================= -->
+<section id="certifications" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/certifications</div>
+    <h2 class="section-title reveal">Certifications</h2>
+    <div class="cert-grid reveal">
+      <div class="cert-card">+ Add certification</div>
+      <div class="cert-card">+ Add certification</div>
+      <div class="cert-card">+ Add certification</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 14. TESTIMONIALS ================= -->
+<section id="testimonials" class="section">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/testimonials</div>
+    <h2 class="section-title reveal">Testimonials</h2>
+    <p class="section-lede reveal">Building this section over time, one project at a time.</p>
+    <div class="testi-grid reveal">
+      <div class="testi-card"><div class="testi-quote"><!-- Client quote --></div><div class="testi-name"><!-- Name, Company --></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 15. RESUME ================= -->
+<section id="resume" class="section alt">
+  <div class="wrap">
+    <div class="resume-card reveal">
+      <div class="resume-text">
+        <div class="eyebrow">johnyu.dev/resume</div>
+        <h2 class="section-title" style="margin-bottom:4px;">Resume</h2>
+        <p style="color:var(--muted);">Full experience, tools, and project history in one PDF.</p>
+      </div>
+      <a href="downloads/john-yu-resume.pdf" download class="btn btn-primary">Download PDF</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 16. CONTACT ================= -->
+<section id="contact" class="section">
+  <div class="wrap">
+    <div class="eyebrow">johnyu.dev/contact</div>
+    <h2 class="section-title reveal">Get In Touch</h2>
+    <p class="section-lede reveal">Based in Lapu-Lapu City, Cebu, Philippines — open to remote work worldwide.</p>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <div class="contact-row"><div class="contact-icon">@</div><div><div class="contact-label">Email</div><a class="contact-val" href="mailto:zzjohnyu@gmail.com">zzjohnyu@gmail.com</a></div></div>
+        <div class="contact-row"><div class="contact-icon">#</div><div><div class="contact-label">Phone</div><a class="contact-val" href="tel:+639241037727">+63 924 103 7727</a></div></div>
+        <div class="contact-row"><div class="contact-icon">◎</div><div><div class="contact-label">Location</div><div class="contact-val">Lapu-Lapu City, Cebu, Philippines</div></div></div>
+        <div class="contact-row"><div class="contact-icon">↗</div><div><div class="contact-label">Portfolio</div><a class="contact-val" href="https://johnyu018.github.io/myportfolio/portfolio/" target="_blank" rel="noopener">View full portfolio</a></div></div>
+        <div style="padding:18px;">
+          <div class="social-rail">
+            <a href="https://www.linkedin.com/in/john-yu018/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/johnyu018" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://instagram.com/your-username" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://youtube.com/" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form reveal" onsubmit="return false;">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" placeholder="Message" required></textarea>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<a class="msg-fab" href="https://www.messenger.com/t/johnyu018" target="_blank" rel="noopener" aria-label="Message on Messenger">💬</a>
+
+<footer>© 2026 John Yu. All rights reserved.</footer>
+
+<script>
+  // Mobile nav toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', function(){
+    const isOpen = navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Portfolio dropdown — click-toggle (more reliable than hover)
+  const portfolioNavItem = document.getElementById('portfolioNavItem');
+  const portfolioToggle = document.getElementById('portfolioToggle');
+  portfolioToggle.addEventListener('click', function(e){
+    e.stopPropagation();
+    const isOpen = portfolioNavItem.classList.toggle('open');
+    portfolioToggle.setAttribute('aria-expanded', isOpen);
+  });
+  document.addEventListener('click', function(e){
+    if(!portfolioNavItem.contains(e.target)){
+      portfolioNavItem.classList.remove('open');
+      portfolioToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  // Close mobile menu after clicking a link
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      hamburger.setAttribute('aria-expanded','false');
+    });
+  });
+</script>
+</body>
+</html>
