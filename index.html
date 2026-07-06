@@ -245,13 +245,29 @@ h2.section-title{
 .service-desc{font-size:14px;color:var(--muted);}
 
 /* ============ PROCESS — command pipeline ============ */
-.pipeline{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;}
-.pipe-step{display:flex;align-items:center;gap:20px;padding:18px 26px;border-bottom:1px solid var(--line);}
-.pipe-step:last-child{border-bottom:none;}
-.pipe-index{font-family:var(--mono);font-size:13px;color:var(--paper);background:var(--ink);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.pipe-name{font-weight:600;font-size:16px;}
-.pipe-arrow{font-family:var(--mono);color:var(--line);margin-left:auto;font-size:18px;}
-@media (max-width:600px){.pipe-arrow{display:none;}}
+.process-list{display:flex;flex-direction:column;}
+.process-step{position:relative;padding:0 0 40px 40px;border-left:2px solid var(--line);margin-left:19px;}
+.process-step:last-child{border-left:2px solid transparent;padding-bottom:0;}
+.process-num{
+  position:absolute;left:-21px;top:0;width:40px;height:40px;border-radius:50%;
+  background:var(--ink);color:var(--paper);font-family:var(--mono);font-weight:600;font-size:14px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.process-card{border:1px solid var(--line);border-radius:10px;background:#fff;margin-left:4px;overflow:hidden;}
+.process-header{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 24px;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--sans);
+}
+.process-header-text{display:flex;flex-direction:column;}
+.process-name{font-weight:800;font-size:19px;margin-bottom:2px;}
+.process-sub{font-family:var(--mono);font-size:12px;color:var(--green);text-transform:uppercase;letter-spacing:.04em;}
+.process-chevron{font-size:13px;color:var(--muted);transition:transform .2s ease;flex-shrink:0;}
+.process-card.open .process-chevron{transform:rotate(180deg);}
+.process-body{display:none;padding:0 24px 24px;}
+.process-card.open .process-body{display:block;}
+.process-desc{color:var(--muted);font-size:14.5px;max-width:62ch;margin-bottom:16px;}
+.process-label{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+.process-label + .process-label{margin-top:16px;}
 
 /* ============ CASE STUDIES ============ */
 .case-card{border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:24px;overflow:hidden;}
@@ -478,19 +494,312 @@ footer{padding:32px 0;text-align:center;font-family:var(--mono);font-size:12.5px
   <div class="wrap">
     <div class="eyebrow">johnyu.dev/process</div>
     <h2 class="section-title reveal">SEO Process</h2>
-    <p class="section-lede reveal">Every project runs through the same pipeline — nothing skipped, nothing shipped without reporting back.</p>
-    <div class="pipeline reveal">
-      <div class="pipe-step"><div class="pipe-index">1</div><div class="pipe-name">Discovery</div><div class="pipe-arrow">↓</div></div>
-      <div class="pipe-step"><div class="pipe-index">2</div><div class="pipe-name">SEO Audit</div><div class="pipe-arrow">↓</div></div>
-      <div class="pipe-step"><div class="pipe-index">3</div><div class="pipe-name">Keyword Research</div><div class="pipe-arrow">↓</div></div>
-      <div class="pipe-step"><div class="pipe-index">4</div><div class="pipe-name">Technical SEO</div><div class="pipe-arrow">↓</div></div>
-      <div class="pipe-step"><div class="pipe-index">5</div><div class="pipe-name">On-Page SEO</div><div class="pipe-arrow">↓</div></div>
-      <div class="pipe-step"><div class="pipe-index">6</div><div class="pipe-name">Content</div><div class="pipe-arrow">↓</div></div>
-      <div class="pipe-step"><div class="pipe-index">7</div><div class="pipe-name">Internal Linking</div><div class="pipe-arrow">↓</div></div>
-      <div class="pipe-step"><div class="pipe-index">8</div><div class="pipe-name">Schema</div><div class="pipe-arrow">↓</div></div>
-      <div class="pipe-step"><div class="pipe-index">9</div><div class="pipe-name">Core Web Vitals</div><div class="pipe-arrow">↓</div></div>
-      <div class="pipe-step"><div class="pipe-index">10</div><div class="pipe-name">Off-Page SEO</div><div class="pipe-arrow">↓</div></div>
-      <div class="pipe-step"><div class="pipe-index">11</div><div class="pipe-name">Reporting</div><div class="pipe-arrow">✓</div></div>
+    <p class="section-lede reveal">Every project runs through the same eleven-stage pipeline — nothing skipped, nothing shipped without reporting back.</p>
+    <div class="process-list reveal">
+
+      <div class="process-step">
+        <div class="process-num">1</div>
+        <div class="process-card">
+          <button class="process-header" type="button" aria-expanded="false">
+            <span class="process-header-text">
+              <span class="process-name">Discovery</span>
+              <span class="process-sub">Understanding the Business &amp; Goals</span>
+            </span>
+            <span class="process-chevron">▾</span>
+          </button>
+          <div class="process-body">
+            <p class="process-desc">The foundation of every campaign — learning the client's business, audience, products, competitors, and marketing objectives so the SEO strategy aligns with measurable business goals.</p>
+          <div class="process-label">Key Activities</div>
+          <div class="chip-grid">
+            <span class="chip">Business &amp; website analysis</span>
+            <span class="chip">Target audience identification</span>
+            <span class="chip">SEO objectives &amp; KPIs</span>
+            <span class="chip">Competitor overview</span>
+            <span class="chip">Customer journey mapping</span>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-num">2</div>
+        <div class="process-card">
+          <button class="process-header" type="button" aria-expanded="false">
+            <span class="process-header-text">
+              <span class="process-name">SEO Audit</span>
+              <span class="process-sub">Evaluating Website Health</span>
+            </span>
+            <span class="process-chevron">▾</span>
+          </button>
+          <div class="process-body">
+            <p class="process-desc">Identifies technical issues, content gaps, and optimization opportunities that may be preventing the website from performing well in search engines.</p>
+          <div class="process-label">Key Activities</div>
+          <div class="chip-grid">
+            <span class="chip">Crawl analysis</span>
+            <span class="chip">Indexability review</span>
+            <span class="chip">Broken links &amp; redirects</span>
+            <span class="chip">Duplicate content detection</span>
+            <span class="chip">Meta tag review</span>
+            <span class="chip">Mobile usability</span>
+            <span class="chip">Site architecture assessment</span>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-num">3</div>
+        <div class="process-card">
+          <button class="process-header" type="button" aria-expanded="false">
+            <span class="process-header-text">
+              <span class="process-name">Keyword Research</span>
+              <span class="process-sub">Finding the Right Search Opportunities</span>
+            </span>
+            <span class="process-chevron">▾</span>
+          </button>
+          <div class="process-body">
+            <p class="process-desc">Identifies the words and phrases people actually search for, then maps them to the right pages based on search intent.</p>
+          <div class="process-label">Key Activities</div>
+          <div class="chip-grid">
+            <span class="chip">Search volume analysis</span>
+            <span class="chip">Keyword difficulty</span>
+            <span class="chip">Search intent classification</span>
+            <span class="chip">Long-tail keyword research</span>
+            <span class="chip">Competitor keyword analysis</span>
+            <span class="chip">Topic clustering</span>
+            <span class="chip">Entity research</span>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-num">4</div>
+        <div class="process-card">
+          <button class="process-header" type="button" aria-expanded="false">
+            <span class="process-header-text">
+              <span class="process-name">Technical SEO</span>
+              <span class="process-sub">Optimizing Website Infrastructure</span>
+            </span>
+            <span class="process-chevron">▾</span>
+          </button>
+          <div class="process-body">
+            <p class="process-desc">Makes sure search engines can efficiently crawl, index, and understand the website — while keeping the underlying user experience strong.</p>
+          <div class="process-label">Key Activities</div>
+          <div class="chip-grid">
+            <span class="chip">robots.txt optimization</span>
+            <span class="chip">XML sitemap management</span>
+            <span class="chip">Canonical tags</span>
+            <span class="chip">HTTPS implementation</span>
+            <span class="chip">URL structure optimization</span>
+            <span class="chip">Redirect management</span>
+            <span class="chip">Crawl budget optimization</span>
+            <span class="chip">JavaScript SEO</span>
+            <span class="chip">Hreflang implementation</span>
+            <span class="chip">Log file analysis</span>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-num">5</div>
+        <div class="process-card">
+          <button class="process-header" type="button" aria-expanded="false">
+            <span class="process-header-text">
+              <span class="process-name">On-Page SEO</span>
+              <span class="process-sub">Optimizing Individual Pages</span>
+            </span>
+            <span class="process-chevron">▾</span>
+          </button>
+          <div class="process-body">
+            <p class="process-desc">Improves individual webpages by optimizing content, HTML elements, and overall page relevance for target keywords.</p>
+          <div class="process-label">Key Activities</div>
+          <div class="chip-grid">
+            <span class="chip">Title tag optimization</span>
+            <span class="chip">Meta descriptions</span>
+            <span class="chip">Heading structure (H1–H6)</span>
+            <span class="chip">Image optimization</span>
+            <span class="chip">URL optimization</span>
+            <span class="chip">Internal keyword placement</span>
+            <span class="chip">UX improvements</span>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-num">6</div>
+        <div class="process-card">
+          <button class="process-header" type="button" aria-expanded="false">
+            <span class="process-header-text">
+              <span class="process-name">Content Optimization</span>
+              <span class="process-sub">Creating Helpful, High-Quality Content</span>
+            </span>
+            <span class="process-chevron">▾</span>
+          </button>
+          <div class="process-body">
+            <p class="process-desc">Focused on producing valuable, accurate, search-intent-driven content that satisfies both real readers and search engines.</p>
+          <div class="process-label">Key Activities</div>
+          <div class="chip-grid">
+            <span class="chip">Content planning</span>
+            <span class="chip">Topic clusters</span>
+            <span class="chip">Search intent optimization</span>
+            <span class="chip">Content updates</span>
+            <span class="chip">Semantic keyword integration</span>
+            <span class="chip">E-E-A-T improvements</span>
+            <span class="chip">AI Overview optimization (AEO/GEO)</span>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-num">7</div>
+        <div class="process-card">
+          <button class="process-header" type="button" aria-expanded="false">
+            <span class="process-header-text">
+              <span class="process-name">Internal Linking</span>
+              <span class="process-sub">Improving Website Structure &amp; Authority Flow</span>
+            </span>
+            <span class="process-chevron">▾</span>
+          </button>
+          <div class="process-body">
+            <p class="process-desc">Helps search engines understand site hierarchy while distributing authority across important pages and improving navigation.</p>
+          <div class="process-label">Key Activities</div>
+          <div class="chip-grid">
+            <span class="chip">Build topic clusters</span>
+            <span class="chip">Optimize anchor text</span>
+            <span class="chip">Improve crawl paths</span>
+            <span class="chip">Connect related content</span>
+            <span class="chip">Strengthen pillar pages</span>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-num">8</div>
+        <div class="process-card">
+          <button class="process-header" type="button" aria-expanded="false">
+            <span class="process-header-text">
+              <span class="process-name">Schema Markup</span>
+              <span class="process-sub">Enhancing Search Engine Understanding</span>
+            </span>
+            <span class="process-chevron">▾</span>
+          </button>
+          <div class="process-body">
+            <p class="process-desc">Structured data that helps search engines better understand page content and can improve visibility through rich results.</p>
+          <div class="process-label">Key Activities</div>
+          <div class="chip-grid">
+            <span class="chip">Organization Schema</span>
+            <span class="chip">Local Business Schema</span>
+            <span class="chip">FAQ Schema</span>
+            <span class="chip">Article Schema</span>
+            <span class="chip">Breadcrumb Schema</span>
+            <span class="chip">Product Schema</span>
+            <span class="chip">Review Schema</span>
+            <span class="chip">Person Schema</span>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-num">9</div>
+        <div class="process-card">
+          <button class="process-header" type="button" aria-expanded="false">
+            <span class="process-header-text">
+              <span class="process-name">Core Web Vitals</span>
+              <span class="process-sub">Optimizing User Experience &amp; Performance</span>
+            </span>
+            <span class="process-chevron">▾</span>
+          </button>
+          <div class="process-body">
+            <p class="process-desc">Measures loading speed, interactivity, and visual stability to ensure a genuinely good page experience.</p>
+          <div class="process-label">Key Metrics</div>
+          <div class="chip-grid">
+            <span class="chip">Largest Contentful Paint (LCP)</span>
+            <span class="chip">Interaction to Next Paint (INP)</span>
+            <span class="chip">Cumulative Layout Shift (CLS)</span>
+          </div>
+          <div class="process-label">Optimization Includes</div>
+          <div class="chip-grid">
+            <span class="chip">Image optimization</span>
+            <span class="chip">Lazy loading</span>
+            <span class="chip">CSS &amp; JS optimization</span>
+            <span class="chip">Caching improvements</span>
+            <span class="chip">Server performance</span>
+            <span class="chip">CDN optimization</span>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-num">10</div>
+        <div class="process-card">
+          <button class="process-header" type="button" aria-expanded="false">
+            <span class="process-header-text">
+              <span class="process-name">Off-Page SEO</span>
+              <span class="process-sub">Building Authority &amp; Trust</span>
+            </span>
+            <span class="process-chevron">▾</span>
+          </button>
+          <div class="process-body">
+            <p class="process-desc">Strengthens a website's credibility and authority through external signals and brand visibility beyond the site itself.</p>
+          <div class="process-label">Key Activities</div>
+          <div class="chip-grid">
+            <span class="chip">Link building</span>
+            <span class="chip">Digital PR</span>
+            <span class="chip">Local citations</span>
+            <span class="chip">Google Business Profile optimization</span>
+            <span class="chip">Brand mentions</span>
+            <span class="chip">Outreach campaigns</span>
+            <span class="chip">Reputation management</span>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-num">11</div>
+        <div class="process-card">
+          <button class="process-header" type="button" aria-expanded="false">
+            <span class="process-header-text">
+              <span class="process-name">Reporting &amp; Continuous Optimization</span>
+              <span class="process-sub">Measuring Performance &amp; Driving Growth</span>
+            </span>
+            <span class="process-chevron">▾</span>
+          </button>
+          <div class="process-body">
+            <p class="process-desc">Tracks progress against key performance indicators, surfaces new opportunities, and guides the next round of optimization.</p>
+          <div class="process-label">Key Metrics</div>
+          <div class="chip-grid">
+            <span class="chip">Organic traffic</span>
+            <span class="chip">Keyword rankings</span>
+            <span class="chip">Click-through rate (CTR)</span>
+            <span class="chip">Impressions</span>
+            <span class="chip">Conversions</span>
+            <span class="chip">Core Web Vitals</span>
+            <span class="chip">Indexed pages</span>
+            <span class="chip">Backlink growth</span>
+            <span class="chip">User engagement</span>
+          </div>
+          <div class="process-label">Common Tools</div>
+          <div class="chip-grid">
+            <span class="chip">Google Search Console</span>
+            <span class="chip">Google Analytics 4</span>
+            <span class="chip">Looker Studio</span>
+            <span class="chip">Ahrefs</span>
+            <span class="chip">Semrush</span>
+            <span class="chip">Screaming Frog</span>
+            <span class="chip">PageSpeed Insights</span>
+          </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -887,6 +1196,15 @@ footer{padding:32px 0;text-align:center;font-family:var(--mono);font-size:12.5px
       portfolioNavItem.classList.remove('open');
       portfolioToggle.setAttribute('aria-expanded', 'false');
     }
+  });
+
+  // Process accordion — click-toggle (same pattern as Portfolio dropdown)
+  document.querySelectorAll('.process-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      const card = btn.closest('.process-card');
+      const isOpen = card.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+    });
   });
 
   // Scroll reveal
