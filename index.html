@@ -348,6 +348,11 @@ h2.section-title{
 /* ============ CERTS / TESTIMONIALS ============ */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;}
 .cert-card{border:1px dashed var(--line);border-radius:8px;padding:22px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px;}
+.cert-earned{border:1px solid var(--line);border-radius:10px;background:#fff;padding:26px 22px;text-align:center;}
+.cert-badge{width:88px;height:88px;margin:0 auto 16px;border-radius:50%;object-fit:contain;}
+.cert-name{font-family:var(--sans);font-weight:700;font-size:15.5px;color:var(--ink);margin-bottom:6px;}
+.cert-issuer{font-family:var(--mono);font-size:12px;color:var(--green);margin-bottom:12px;}
+.cert-meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);line-height:1.7;}
 .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
 .testi-card{border:1px solid var(--line);border-radius:10px;background:#fff;padding:26px;}
 .testi-quote{font-size:15.5px;margin-bottom:16px;}
@@ -1106,7 +1111,12 @@ footer{padding:32px 0;text-align:center;font-family:var(--mono);font-size:12.5px
     <div class="eyebrow">johnyu.dev/certifications</div>
     <h2 class="section-title reveal">Certifications</h2>
     <div class="cert-grid reveal">
-      <div class="cert-card">+ Add certification</div>
+      <div class="cert-earned">
+        <img class="cert-badge" src="certs/google-ads-search-badge.png" alt="Google Ads Search Certification badge">
+        <div class="cert-name">Google Ads Search Certification</div>
+        <div class="cert-issuer">Google</div>
+        <div class="cert-meta">Certificate ID: 124199041</div>
+      </div>
       <div class="cert-card">+ Add certification</div>
       <div class="cert-card">+ Add certification</div>
     </div>
